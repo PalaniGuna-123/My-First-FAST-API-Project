@@ -1,1 +1,7 @@
-print("Hello World! This is a simple Python program.")
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"message": "This is my first FastAPI application!"}
