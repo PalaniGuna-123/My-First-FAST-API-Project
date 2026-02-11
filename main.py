@@ -1,6 +1,1 @@
-def main():
-    print("Hello from fast-api!")
-
-
-if __name__ == "__main__":
-    main()
+print("Hello World! This is a simple Python program.")
