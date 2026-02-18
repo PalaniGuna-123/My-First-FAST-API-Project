@@ -1,8 +1,8 @@
-from pydantic import BaseModel ,EmailStr
+from pydantic import BaseModel 
 
 class Person(BaseModel):
     name: str
     age: int
-    email: EmailStr
+    email: str
 Valid_data = Person(name="Guna", age=30, email="john.doe@example.com")
 print(Valid_data)
