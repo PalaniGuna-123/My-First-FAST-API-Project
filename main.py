@@ -6,6 +6,11 @@ from typing import List
 
 app = FastAPI()
 
+class Item(BaseModel):
+    name: str
+    price: float
+    in_stock: bool
+
 class User(BaseModel): #this class is called Data Model
     name : str
     age : int
@@ -15,6 +20,15 @@ class UserResponse(BaseModel):
     message : str
     user :User
     recommandations : List[str]
+
+@app.post("/json/")
+def receive_item(item: Item):
+    return {
+        "type" : "JSON",
+        "name" : item.name,
+        "price" : item.price,
+        "in_stock" : item.in_stock
+    }
 
 @app.post("/recommend", response_model=UserResponse)
 def recommend_items(user: User):
