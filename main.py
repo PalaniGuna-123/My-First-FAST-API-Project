@@ -1,5 +1,5 @@
 
-from fastapi import FastAPI
+from fastapi import FastAPI,Body
 from pydantic import BaseModel
 from typing import List
 
@@ -29,7 +29,12 @@ def receive_item(item: Item):
         "price" : item.price,
         "in_stock" : item.in_stock
     }
-
+@app.post("/text/")
+def receive_text(content : str = Body(..., media_type="text/plain")):
+    return {
+        "type" : "Plain Text",
+        "content" : content
+    }
 @app.post("/recommend", response_model=UserResponse)
 def recommend_items(user: User):
     '''
