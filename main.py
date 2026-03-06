@@ -1,5 +1,5 @@
 
-from fastapi import FastAPI,Body
+from fastapi import FastAPI,Body,Form
 from pydantic import BaseModel
 from typing import List
 
@@ -20,6 +20,13 @@ class UserResponse(BaseModel):
     message : str
     user :User
     recommandations : List[str]
+@app.post("/form/")
+def receive_form(Username: str = Form(...), Password: str = Form(...)): #three dots means that the field is required, if we want to make it optional we can use None instead of ...
+    return {
+        "type" : "Form Date",
+        "name" : Username,
+        "Password" : Password
+    }
 
 @app.post("/json/")
 def receive_item(item: Item):
